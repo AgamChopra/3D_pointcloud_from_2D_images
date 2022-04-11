@@ -2,10 +2,7 @@
 """
 Created on Fri Apr 8 21:03:12 2022
 
-@author: Agamdeep S. Chopra
-Acknowledgement: I utilized lecture notes, recommended texts, and various online resources as reference to write this code.
-                 Voxel coloring was hardcoded using lookup table. If time was not a constraint, surface normal based coloring would have been explored.
-      
+@author: AgamChopra     
 """
 import numpy as np
 import cv2
@@ -53,7 +50,7 @@ def best_idx(imgs,encode):
 
 @jit(nopython=False)
 def hw3(voxels):    
-    path = 'R:\classes 2020-22\Spring 2022\CS 532 3D CV\HW3\cs532_HW03'
+    path = '\point_clouds'
     P = np.zeros((3,4,8))
     S = np.zeros((582, 780, 8)) #np.zeros((582, 780, 3, 8))
     I = np.zeros((582, 780, 3, 8))
@@ -107,9 +104,8 @@ def hw3(voxels):
                         col.append(pt_hist[1])
                     flag = True
                     pt_hist = None                                                   
-    pos, col = np.asanyarray(pos), np.asanyarray(col)
-    path = 'R:\classes 2020-22\Spring 2022\CS 532 3D CV\HW3'    
-    save_surface_point_cloud(pos, col, path, "colored_surface_points_temp")  
+    pos, col = np.asanyarray(pos), np.asanyarray(col) 
+    save_surface_point_cloud(pos, col, path, "colored_surface_points")  
     ps.init()
     ps_cloud = ps.register_point_cloud("my points", pos, enabled=True)
     ps_cloud.add_color_quantity("my colors", col/255)
